@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Text Modifier</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: #f7f7f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #10a37f;
+    }
+
+    .output {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: #444;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter some text:</h1>
+    <input type="text" id="userInput" placeholder="Type here..." oninput="handleInput()" />
+    <div class="output" id="outputText"></div>
+  </div>
+
+  <script>
+    // Modify this function to change how the text is transformed
+    function modifyText(user_input) {
+      let result = '';
+
+      for (let i = 0; i < user_input.length; i++) {
+        const char = user_input[i];
+
+        // Example transformation: convert each character to uppercase
+        if (char.toLowerCase()== "i"){
+            result+=char
+        }
+        else if (char.toLowerCase()=="l"){
+            result+=char.toUpperCase()
+        }
+        else if Math.random() <0.5{
+            result+=char.toUpperCase()
+
+        }
+        return result
+        
+
+        // You can customize the behavior here (e.g., skip vowels, add symbols, etc.)
+      }
+      function handleInput() {
+    const userInput = document.getElementById('userInput').value;
+    const result = modifyText(userInput);
+    document.getElementById('outputText').textContent = result;
+  }
+    }

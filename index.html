@@ -120,24 +120,29 @@
   </div>
 
   <script>
-    function modifyText(input) {
-      let result = '';
+   function modifyText(input) {
 
-      for (let i = 0; i < input.length; i++) {
-        const char = input[i];
+    let result = '';
 
-        if (char.toLowerCase() === "i") {
-          result += char;
-        } else if (char.toLowerCase() === "l") {
-          result += char.toUpperCase();
-        } else if (Math.random() < 0.5) {
-          result += char.toUpperCase();
-        } else {
-          result += char.toLowerCase();
-        }
+    for (let i = 0; i < input.length; i++) {
+      const char = input[i];
+
+      if (char.toLowerCase() === "i") {
+        result += char;
+      } else if (char.toLowerCase() === "l") {
+        result += char.toUpperCase();
+      } else if (result.slice(-2) == result.slice(-2).toUpperCase()){
+        result+=char.toLowerCase()
+      } else if (result.slice(-2) == result.slice(-2).toLowerCase()){
+        result+=char.toUpperCase()
+      } else if (Math.random() < 0.5) {
+        result += char.toUpperCase();
+      } else {
+        result += char.toLowerCase();
       }
+    }
 
-      return result;
+      return result.trim();
     }
 
     function handleInput() {
@@ -176,3 +181,4 @@
   </script>
 </body>
 </html>
+

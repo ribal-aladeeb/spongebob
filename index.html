@@ -51,43 +51,48 @@
       font-size: 1.1rem;
       color: #444;
       word-wrap: break-word;
+      font-weight: bold;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Enter some text:</h1>
+    <h1>Spongebobify:</h1>
     <input type="text" id="userInput" placeholder="Type here..." oninput="handleInput()" />
     <div class="output" id="outputText"></div>
   </div>
 
   <script>
-    // Modify this function to change how the text is transformed
-    function modifyText(user_input) {
+    function modifyText(input) {
       let result = '';
 
-      for (let i = 0; i < user_input.length; i++) {
-        const char = user_input[i];
+      for (let i = 0; i < input.length; i++) {
+        const char = input[i];
 
-        // Example transformation: convert each character to uppercase
-        if (char.toLowerCase()== "i"){
-            result+=char
+        if (char.toLowerCase() === "i") {
+          result += char;
+        } else if (char.toLowerCase() === "l") {
+          result += char.toUpperCase();
+        } else if (result.slice(-3) == result.slice(-3).toUpperCase()){
+          result+=char.toLowerCase()
+        } else if (result.slice(-3) == result.slice(-3).toLowerCase()){
+          result+=char.toUpperCase()
+        } else if (Math.random() < 0.5) {
+          result += char.toUpperCase();
+        } else {
+          result += char.toLowerCase();
         }
-        else if (char.toLowerCase()=="l"){
-            result+=char.toUpperCase()
-        }
-        else if Math.random() <0.5{
-            result+=char.toUpperCase()
-
-        }
-        return result
-        
-
-        // You can customize the behavior here (e.g., skip vowels, add symbols, etc.)
       }
-      function handleInput() {
-    const userInput = document.getElementById('userInput').value;
-    const result = modifyText(userInput);
-    document.getElementById('outputText').textContent = result;
-  }
+
+      return result;
     }
+
+    function handleInput() {
+      const userInput = document.getElementById('userInput').value;
+      const result = modifyText(userInput);
+      document.getElementById('outputText').textContent = result;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+services:
+  # Nginx Reverse Proxy
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: nginx-reverse-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - spongebob-app
+    networks:
+      - proxy-network
+    restart: unless-stopped
+
+  # SpongeBob Application (your current app)
+  spongebob-app:
+    image: nginx:alpine
+    container_name: spongebob
+    volumes:
+      - ./spongebob.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - proxy-network
+    restart: unless-stopped
+
+networks:
+  proxy-network:
+    driver: bridge
